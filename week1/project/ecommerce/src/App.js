@@ -8,19 +8,19 @@ import Categories from './components/categories';
 function App() {
 
   const [allProducts, setProducts] = useState(products);
-  const [selectCategory, setSelect] = useState();
+  const [selectCategory, setSelectCategory] = useState();
 
   const handleFiltre = category => {
-    let filterProducts = products.filter(item => `FAKE: ${item.category}` === category);
+    const filterProducts = products.filter(item => `FAKE: ${item.category}` === category);
     setProducts(filterProducts);
   };
   return (
     <div className="App">
       <h1>Products</h1>
       <Categories
-        categories={categories} handleFiltre={handleFiltre} selectCat={selectCategory} setSelect={setSelect} />
+        categories={categories} handleFiltre={handleFiltre} selectCat={selectCategory} setSelect={setSelectCategory} />
       <Product
-        pro={allProducts} />;
+        prop={allProducts} />;
     </div>
   );
 }

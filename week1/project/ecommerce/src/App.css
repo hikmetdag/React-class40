@@ -1,7 +1,12 @@
+.App>h1{
+  display: flex;
+  justify-content: center;
+}
 nav {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 5%;
+  justify-content: center;
 }
 nav > button {
   display: flex;
@@ -10,6 +15,7 @@ nav > button {
   width: 180px;
   height: 40px;
   background-color: rgb(186, 186, 186);
+  font-size: 1.2vw;
 }
 nav > button:hover {
   cursor: pointer;
@@ -26,17 +32,26 @@ nav > button:hover {
   align-items: center;
 }
 .product {
-  position: relative;
-  width: 30%;
-  margin: 1.5%;
+  height: 400px;
+  padding: 10px;
+  position: flex;
+  align-items: center;
+  flex-direction: column;
+  
+  width: 20%;
+  margin: 2%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.2vw;
 }
 
 img {
-  height: 100%;
+  padding: 2px;
+  flex-grow: 1;
+  flex-shrink: 1;
   width: 100%;
-  object-fit: cover;
+  min-height:0;
+  object-fit: contain
 }
