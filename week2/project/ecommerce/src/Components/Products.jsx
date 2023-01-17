@@ -57,7 +57,9 @@ const Products = () => {
 
   return loading ? (
     <h2>Loading...</h2>
-  ) : (
+  ) : error ? (
+    <Error error={error} />
+  ): (
     <>
       <h1>Products</h1>
 
