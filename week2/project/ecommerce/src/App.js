@@ -5,8 +5,6 @@ import Products from './Components/Products';
 import ProductDetail from './Components/productDetail';
 
 function App() {
-
-
   return (
     <div className="App">
       <Routes>

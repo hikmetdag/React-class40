@@ -5,42 +5,37 @@ import { useParams } from "react-router-dom";
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(false);
-  const [Loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
-        setLoading(true)
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const data = await response.json();
-      setProduct(data);
-      setLoading(false)
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+
+        const data = await response.json();
+        setProduct(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
     };
-    try {
-      getData();
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    } 
+    getData();
   }, [id]);
 
-  return (
-  <>
-  {Loading ? (
-      <h3>Loading...</h3>
-    
+  return loading ? (
+    <h3>Loading...</h3>
   ) : error ? (
     <Error error={error} />
   ) : (
-    <div className="product">
+    <div className="productDeatail">
       <h3>{product.title}</h3>
       <img src={product.image} alt={product.id} />
 
       <p>{product.description}</p>
     </div>
-  )
-  }
-  </>) 
+  );
 };
 
 export default ProductDetail;

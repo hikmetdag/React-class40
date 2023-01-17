@@ -6,48 +6,23 @@ import Error from "./Error";
 const Products = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
-  const [categories, setCategories] = useState([]);
-  const [selectCat, setselectCat] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    try {
-      async function getProducts() {
-        setLoading(true);
+    const getProducts = async () => {
+      try {
         const response = await fetch("https://fakestoreapi.com/products");
-
         const data = await response.json();
-
         setData(data);
         setFilter(data);
         setLoading(false);
-      }
-      getProducts();
-    } catch (err) {
-      setError(error.message);
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      setLoading(true);
-      async function getCategories() {
-        const response = await fetch(
-          "https://fakestoreapi.com/products/categories"
-        );
-
-        const data = await response.json();
-
-        setCategories(data);
+      } catch (err) {
+        setError(err);
         setLoading(false);
       }
-      getCategories();
-    } catch (err) {
-      setError(error.message);
-      setLoading(false);
-    }
+    };
+    getProducts();
   }, []);
 
   const filterProducts = (cat) => {
@@ -58,18 +33,11 @@ const Products = () => {
   return loading ? (
     <h2>Loading...</h2>
   ) : error ? (
-    <Error error={error} />
-  ): (
+    <Error />
+  ) : (
     <>
       <h1>Products</h1>
-
-      <Categories
-        categories={categories}
-        setCategories={setCategories}
-        filterProducts={filterProducts}
-        selectCat={selectCat}
-        setselectCat={setselectCat}
-      />
+      <Categories filterProducts={filterProducts} />
       <Product filter={filter} />
     </>
   );

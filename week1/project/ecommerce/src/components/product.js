@@ -5,7 +5,7 @@ const Product = ({pro}) => {
     <div className='products'>{pro.map((product) => {
       return <div key={product.id} className="product">
       <img src={product.image} alt={product.title} />
-      <h1>{product.title}</h1>
+      <h3>{product.title}</h3>
     </div>
     })}</div>
   )
