@@ -18,24 +18,22 @@ const ProductDetail = () => {
         setLoading(false);
       } catch (error) {
         setError(error);
-        setLoading(false);
       }
     };
     getData();
   }, [id]);
 
-  return loading ? (
-    <h3>Loading...</h3>
-  ) : error ? (
-    <Error error={error} />
-  ) : (
-    <div className="productDeatail">
-      <h3>{product.title}</h3>
-      <img src={product.image} alt={product.id} />
+  if (loading) return <h2>Loading...</h2>;
+  if (error) return <Error />;
+  else
+    return (
+      <div className="productDeatail">
+        <h3>{product.title}</h3>
+        <img src={product.image} alt={product.id} />
 
-      <p>{product.description}</p>
-    </div>
-  );
+        <p>{product.description}</p>
+      </div>
+    );
 };
 
 export default ProductDetail;

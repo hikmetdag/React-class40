@@ -18,34 +18,32 @@ const Categories = ({ filterProducts }) => {
         setLoading(false);
       } catch (err) {
         setError(err);
-        setLoading(false);
       }
     };
     getCategories();
   }, []);
 
-  return loading ? (
-    <h3>Loading...</h3>
-  ) : error ? (
-    <Error />
-  ) : (
-    <nav>
-      {categories.map((cat, index) => {
-        return (
-          <button
-            key={index}
-            className={selectCat === index ? "active" : "non-active"}
-            onClick={() => {
-              filterProducts(cat);
-              setSelectCat(index);
-            }}
-          >
-            {cat}
-          </button>
-        );
-      })}
-    </nav>
-  );
+  if (loading) return <h2>Loading...</h2>;
+  if (error) return <Error />;
+  else
+    return (
+      <nav>
+        {categories.map((cat, index) => {
+          return (
+            <button
+              key={index}
+              className={selectCat === index ? "active" : "non-active"}
+              onClick={() => {
+                filterProducts(cat);
+                setSelectCat(index);
+              }}
+            >
+              {cat}
+            </button>
+          );
+        })}
+      </nav>
+    );
 };
 
 export default Categories;

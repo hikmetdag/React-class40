@@ -19,7 +19,6 @@ const Products = () => {
         setLoading(false);
       } catch (err) {
         setError(err);
-        setLoading(false);
       }
     };
     getProducts();
@@ -29,18 +28,20 @@ const Products = () => {
     const productList = data.filter((element) => element.category === cat);
     setFilter(productList);
   };
-
-  return loading ? (
-    <h2>Loading...</h2>
-  ) : error ? (
-    <Error />
-  ) : (
-    <>
-      <h1>Products</h1>
-      <Categories filterProducts={filterProducts} />
-      <Product filter={filter} />
-    </>
-  );
+  const clearErrorState = () => {
+    setError("");
+  };
+  if (loading) return <h2>Loading...</h2>;
+  if (error) return <Error />;
+  else
+    return (
+      <>
+        {clearErrorState}
+        <h1>Products</h1>
+        <Categories filterProducts={filterProducts} />
+        <Product filter={filter} />
+      </>
+    );
 };
 
 export default Products;
