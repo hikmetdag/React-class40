@@ -7,7 +7,7 @@ const Products = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -17,9 +17,8 @@ const Products = () => {
         setData(data);
         setFilter(data);
         setLoading(false);
-        setError(false);
       } catch (err) {
-        setError(true);
+        setError(err);
       }
     };
     getProducts();
@@ -32,10 +31,8 @@ const Products = () => {
   const clearErrorState = () => {
     setError("");
   };
-
-  if (error) return <Error />;
-
   if (loading) return <h2>Loading...</h2>;
+  if (error) return <Error />;
   else
     return (
       <>

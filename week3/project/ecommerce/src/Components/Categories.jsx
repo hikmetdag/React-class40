@@ -5,7 +5,7 @@ const Categories = ({ filterProducts }) => {
   const [categories, setCategories] = useState([]);
   const [selectCat, setSelectCat] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -16,17 +16,15 @@ const Categories = ({ filterProducts }) => {
         const data = await response.json();
         setCategories(data);
         setLoading(false);
-        setError(false);
       } catch (err) {
-        setError(true);
+        setError(err);
       }
     };
     getCategories();
   }, []);
 
-  if (error) return <Error />;
-
   if (loading) return <h2>Loading...</h2>;
+  if (error) return <Error />;
   else
     return (
       <nav>
