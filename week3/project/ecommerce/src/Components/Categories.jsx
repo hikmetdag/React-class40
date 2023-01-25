@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"
 import Error from "./Error";
 import useFetch from "../hooks/useFetch";
 

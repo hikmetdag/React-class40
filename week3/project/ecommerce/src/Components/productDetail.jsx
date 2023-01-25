@@ -16,17 +16,16 @@ const ProductDetail = () => {
   if (loading) return <h3>Loading...</h3>;
   return (
     <>
-     <Header />
-     <div className="productDeatail">
-      <h4>{data.title}</h4>
-      <div className="fav-icon-detail">
-        <img src={data.image} alt={data.id} />
-        <FavoriteIcon product={data} />
+      <Header />
+      <div className="productDeatail">
+        <h4>{data.title}</h4>
+        <div className="fav-icon-detail">
+          <img src={data.image} alt={data.id} />
+          <FavoriteIcon product={data} />
+        </div>
+        <p>{data.description}</p>
       </div>
-      <p>{data.description}</p>
-    </div>
     </>
-    
   );
 };
 

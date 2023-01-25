@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Categories from "./Categories";
 import Product from "./Product";
 import Error from "./Error";
-import Header from "./Header";
+import Header from "./Header"
 
 const Products = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false); 
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -18,7 +18,7 @@ const Products = () => {
         setData(data);
         setFilter(data);
         setLoading(false);
-        setError(false)
+        setError(false);
       } catch (err) {
         setError(true);
       }
@@ -36,7 +36,7 @@ const Products = () => {
   return (
     <>
       <h1>Products</h1>
-      <Header/>
+      <Header />
       <Categories filterProducts={filterProducts} />
       <Product filter={filter} />
     </>

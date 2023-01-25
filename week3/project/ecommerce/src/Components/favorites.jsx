@@ -17,7 +17,7 @@ const Favorites = () => {
       <h1>Favourites</h1>
       <div className="products">
         {data.length !== 0 ? (
-          data.map((product,index) => {
+          data.map((product, index) => {
             return <ChildProduct key={index} product={product} />;
           })
         ) : (
