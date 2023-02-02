@@ -2,36 +2,25 @@ import React, { useState, useEffect } from "react";
 import Categories from "./Categories";
 import Product from "./Product";
 import Error from "./Error";
-import Header from "./Header"
+import Header from "./Header";
+import Loading from "./Loading";
+import useFetch from "../hooks/useFetch";
 
 const Products = () => {
-  const [data, setData] = useState([]);
-  const [filter, setFilter] = useState(data);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
+  const { data, error, loading } = useFetch(
+    "https://fakestoreapi.com/products"
+  );
+  const [filter, setFilter] = useState([]);
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        setData(data);
-        setFilter(data);
-        setLoading(false);
-        setError(false);
-      } catch (err) {
-        setError(true);
-      }
-    };
-    getProducts();
-  }, []);
-
+    setFilter(data);
+  }, [data]);
+  console.log(filter);
   const filterProducts = (cat) => {
     const productList = data.filter((element) => element.category === cat);
     setFilter(productList);
   };
 
-  if (loading) return <h3>Loading...</h3>;
+  if (loading) return <Loading />;
   if (error) return <Error error={error} />;
   return (
     <>

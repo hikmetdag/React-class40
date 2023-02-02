@@ -4,13 +4,15 @@ import ChildProduct from "./ChildProduct";
 import Header from "./Header";
 import useFetchFavoriteUrls from "../hooks/useFetchFavoriteUrls";
 import Error from "./Error";
+import Loading from "./Loading";
+import useFetch from "../hooks/useFetch";
 
 const Favorites = () => {
   const { urlFavorites } = useContext(FavoriteContext);
   const { data, loading, error } = useFetchFavoriteUrls(urlFavorites);
 
   if (error) return <Error error={error} />;
-  if (loading) return <h3>Loading...</h3>;
+  if (loading) return <Loading />;
   return (
     <>
       <Header />

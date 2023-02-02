@@ -4,20 +4,21 @@ import heartRegular from "../assets/heart-regular.svg";
 import heartSolid from "../assets/heart-solid.svg";
 
 const FavoriteIcon = ({ product }) => {
-  const { favoriteItem, addfavoriteItem, deleteFavoriteItem } =
+  const { id } = product
+  const { favoriteIds,addFavoriteIds,deleteFavoriteIds} =
     useContext(FavoriteContext);
 
   const favoritedProduct = (id) => {
-    return favoriteItem.some((product) => product.id === id);
+    return favoriteIds.some((item) => item === id);
   };
   return (
     <div className="fav-icon ">
-      {favoritedProduct(product.id) ? (
+      {favoritedProduct(id) ? (
         <img
           src={heartSolid}
           alt="favorite-icon"
           onClick={() => {
-            deleteFavoriteItem(product);
+            deleteFavoriteIds(id);
           }}
         />
       ) : (
@@ -25,7 +26,7 @@ const FavoriteIcon = ({ product }) => {
           src={heartRegular}
           alt="favorite-icon"
           onClick={() => {
-            addfavoriteItem(product);
+            addFavoriteIds(id);
           }}
         />
       )}

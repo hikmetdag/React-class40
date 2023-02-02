@@ -2,23 +2,23 @@ import React, { createContext, useState, useEffect } from "react";
 export const FavoriteContext = createContext()
 
 export const FavoriteContextProvider = ({ children }) => {
-  const [favoriteItem, setFavoriteItem] = useState([]);
+  const [favoriteIds, setFavoriteIds] = useState([]);
   const [urlFavorites, setUrlFavorites] = useState();
 
   useEffect(() => {
     setUrlFavorites(
-      favoriteItem.map((item) => `https://fakestoreapi.com/products/${item.id}`)
+      favoriteIds.map((id) => `https://fakestoreapi.com/products/${id}`)
     );
-  }, [favoriteItem]);
-  const addfavoriteItem = (id) => {
-    setFavoriteItem((prevState) => [...prevState, id]);
+  }, [favoriteIds]);
+  const addFavoriteIds = (id) => {
+    setFavoriteIds((prevState) => [...prevState, id]);
   };
 
-  const deleteFavoriteItem=(ID)=>{
-    setFavoriteItem(favoriteItem.filter(element=>element.id!==ID.id))
+  const deleteFavoriteIds=(id)=>{
+    setFavoriteIds(favoriteIds.filter(element=>element!==id))
   }
 
-  return <FavoriteContext.Provider value={{favoriteItem,urlFavorites,addfavoriteItem,deleteFavoriteItem}}>
+  return <FavoriteContext.Provider value={{favoriteIds,urlFavorites,addFavoriteIds,deleteFavoriteIds}}>
     {children}
   </FavoriteContext.Provider>
 };

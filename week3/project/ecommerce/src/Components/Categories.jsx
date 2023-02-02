@@ -1,15 +1,15 @@
-import { useState } from "react"
+import { useState } from "react";
 import Error from "./Error";
 import useFetch from "../hooks/useFetch";
+import Loading from "./Loading";
+import useFetchFavoriteUrls from "../hooks/useFetchFavoriteUrls";
 
 const Categories = ({ filterProducts }) => {
   const [selectCat, setSelectCat] = useState([]);
+ const url="https://fakestoreapi.com/products/categories"
+  const { data, error, loading } = useFetch(url);
 
-  const { data, error, loading } = useFetch(
-    "https://fakestoreapi.com/products/categories"
-  );
-
-  if (loading) return <h3>Loading...</h3>;
+  if (loading) return <Loading />;
   if (error) return <Error error={error} />;
   return (
     <nav>

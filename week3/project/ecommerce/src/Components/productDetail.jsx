@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import Error from "./Error";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
 import FavoriteIcon from "./FavoriteIcon";
 import useFetch from "../hooks/useFetch";
+import Loading from "./Loading";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -13,7 +13,7 @@ const ProductDetail = () => {
   );
 
   if (error) return <Error error={error} />;
-  if (loading) return <h3>Loading...</h3>;
+  if (loading) return <Loading/>
   return (
     <>
       <Header />
